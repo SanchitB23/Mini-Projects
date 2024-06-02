@@ -35,10 +35,18 @@ export function TrafficLight() {
   }, [isRed, isGreen, isYellow]);
 
   return (
-    <section className={'flex flex-col gap-6 flex-1 mt-36'}>
-      <div className={`bg-${isRed ? 'red' : 'blue'}-500 h-24 w-24`} />
-      <div className={`bg-${isYellow ? 'yellow' : 'blue'}-500 h-24 w-24`} />
-      <div className={`bg-${isGreen ? 'green' : 'blue'}-500 h-24 w-24`} />
+    <section
+      className={'flex flex-col gap-6 flex-1 mt-36 border p-4 rounded border-8'}
+    >
+      <div
+        className={`${isRed ? 'bg-red-500' : 'bg-blue-500'} h-24 w-24 rounded-full`}
+      />
+      <div
+        className={`${isYellow ? 'bg-yellow-500' : 'bg-blue-500'} h-24 w-24 rounded-full`}
+      />
+      <div
+        className={`${isGreen ? 'bg-green-500' : 'bg-blue-500'} h-24 w-24 rounded-full`}
+      />
     </section>
   );
 }
