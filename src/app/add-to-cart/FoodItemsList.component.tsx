@@ -1,6 +1,6 @@
 import React, { SetStateAction, useEffect, useMemo, useState } from 'react';
-import _ from 'lodash';
-import { foodItems } from '@/constants';
+import { sortBy } from 'lodash';
+import { foodItems, TFoodItem } from '@/constants';
 
 interface Props {
   setTotalCount: React.Dispatch<SetStateAction<number>>;
@@ -21,7 +21,7 @@ const FoodItemsListComponent = (props: Props) => {
         acc[item.id] = item.price;
         return acc;
       }, {}),
-    [foodItems],
+    [],
   );
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const FoodItemsListComponent = (props: Props) => {
         0,
       ),
     );
-  }, [cartItems]);
+  }, [cartItems, idToPriceMap, setTotalAmt, setTotalCount]);
 
   function onAdd(id: number) {
     setCartItems((prevState) => ({
@@ -50,15 +50,18 @@ const FoodItemsListComponent = (props: Props) => {
 
   return (
     <section className={'flex flex-col items-center mt-36'}>
-      {_.sortBy(foodItems, 'price').map((value) => {
+      {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call */}
+      {sortBy<TFoodItem>(foodItems, 'price').map((value: TFoodItem) => {
         return (
           <div
-            className={'border w-full max-w-2xl p-4 flex justify-around'}
+            className={
+              'border flex-col md:flex-row w-full max-w-2xl p-4 flex md:justify-around justify-center text-center items-center'
+            }
             key={value.id}
           >
             <span className={'font-extrabold'}>{value.name}</span>
             <span>Price: ₹{value.price}</span>
-            <div>
+            <div className={'gap-8 flex'}>
               <button
                 onClick={() => onSubtract(value.id)}
                 disabled={cartItems[value.id] < 1 || !cartItems[value.id]}
