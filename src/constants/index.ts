@@ -7,6 +7,10 @@ export const HOME_CARDS_DATA = [
     title: 'Add to Cart Component',
     url: 'add-to-cart',
   },
+  {
+    title: 'Tic Tac Toe',
+    url: 'tic-tac-toe',
+  },
 ];
 export const foodItems: TFoodItem[] = [
   { id: 1, name: 'Burger', price: 5 },
