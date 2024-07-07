@@ -87,7 +87,12 @@ const Page = () => {
   return (
     <div>
       <section className={'w-full flex justify-evenly my-6'}>
-        <button onClick={onResetGame}>Reset</button>
+        <button
+          className={'border-2 py-2 rounded-full px-5'}
+          onClick={onResetGame}
+        >
+          Reset to New Game
+        </button>
       </section>
       <section
         className={
@@ -97,7 +102,7 @@ const Page = () => {
         {Array.from({ length: 9 }).map((_, index) => (
           <button
             className={
-              'bg-blue-500 flex justify-center items-center text-2xl mid:text-8xl mid:min-h-36 mid:min-w-36 min-h-20 min-w-20'
+              'bg-blue-500 flex justify-center items-center sm:text-8xl sm:min-h-36 sm:min-w-36 text-2xl  min-h-20 min-w-20'
             }
             key={index}
             onClick={() => onBoxClick(index)}
